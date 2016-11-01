@@ -1,0 +1,555 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/collar.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		
+		<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
+
+		<style>
+			body {
+				font-family: 'Julius Sans One', sans-serif;
+				color: #83a598; 
+			}
+
+			.text-highlight {
+				color: #fb4934;
+			}
+
+			#greeting-example-btn {
+				cursor: pointer;
+				color: #689d6a;
+			}
+
+			#greeting-example-btn:hover {
+				color: #8ec07c;
+			}
+
+			svg {
+				stroke: #83a598;
+				stroke-width: 0.12;
+				fill: #282828; 
+			}
+
+			svg text {
+				stroke-width: 0;
+				fill: #83a598;
+			}
+		</style>
+		<script src="/lib/js/collar.min.v0.5.6.js"></script>
+		<script src="/lib/js/collar-dev-client.min.v0.1.8.js"></script>
+		
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal"> 
+			<div class="slides">
+<!--
+Cover
+-->
+
+				<section>
+					<h1>Collar</h1>
+					<h3>Make your code easy to understand</h3>
+					<p>
+					<small>Created by <a href="http://blog.bohou.fr">Bo HOU</a> / <a href="http://twitter.com/bhoustudio">@bhoustudio</a></small>
+					</p>
+				</section>
+<!--
+Chapter 1
+-->
+
+				<section>
+					<section>
+						<h2>How software is built?</h2>
+					</section>
+				</section>
+<!--
+Chapter 2
+-->
+
+
+				<section>
+					<section>
+						<h2>Basic Elements in Collar</h2>
+					</section>
+
+<!--
+Basic Element Overview
+-->
+
+					<section>
+						<svg width="800" height="300" viewBox="-12 -4.5 24 9" style="margin: auto; border: solid 0px #f00;">
+							<defs>
+								<marker id="arrow-start" markerWidth="10" markerHeight="10" refx="-3" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+								<marker id="arrow-end" markerWidth="10" markerHeight="10" refx="8" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+							</defs>
+
+							
+							<g cmt="input/output pin label" class="fragment current-visible">	
+								<text x="-8" y="0.3" font-size="1">IN</text>
+								<text x="6.8" y="0.3" font-size="1">OUT</text>
+							</g>
+
+							<g cmt="straight input/output flow" class="fragment">
+								<line class="node" x1="-9" y1="0" x2="-6.2" y2="0" stroke-dasharray="0.1,0.2" marker-start="url(#arrow-start)"/>
+								<line class="node fragment" x1="6" y1="0" x2="9" y2="0" stroke-dasharray="0.4,0.2" marker-end="url(#arrow-end)"/>
+							</g>
+							<g cmt="multiple input" class="fragment">
+								<path class="node" d="M-9, -2
+																			L-7, -2	
+																			L-6, 0" 
+									stroke-dasharray="0.1,0.2" marker-start="url(#arrow-start)"/>
+								<path class="node" d="M-9, 2
+																			L-7, 2	
+																			L-6, 0" 
+									stroke-dasharray="0.1,0.2" marker-start="url(#arrow-start)"/>
+							</g>
+
+							<g cmt="multiple output" class="fragment">	
+								<path class="node" d="M6, 0
+																			L7, -2	
+																			L9, -2" 
+									stroke-dasharray="0.4,0.2" marker-end="url(#arrow-end)"/>
+								<path class="node" d="M6, 0
+																			L7, 2	
+																			L9, 2" 
+									stroke-dasharray="0.4,0.2" marker-end="url(#arrow-end)"/>
+							</g>
+																			
+							<g cmt="basic element outline">
+								<line class="node" x1="-6" y1="0" x2="6" y2="0"/>
+								<rect data-id="generalEle" class="node" x="-5" y="-2" width="10" height="4"/>
+								<circle class="node" cx="-6" cy="0" r="0.2"/>
+								<circle class="node" cx="6" cy="0" r="0.2"/>
+							</g>
+
+							
+							<g class="fragment">	
+								<line class="node" x1="-6" y1="0" x2="6" y2="0"/>
+								<circle class="node" cx="-6" cy="0" r="0.2"/>
+								<circle class="node" cx="6" cy="0" r="0.2"/>
+															
+								<polygon data-id="filter" class="node" 
+									transform="translate(-3.75,0)" 
+									points="-0.7 -1 0.7 -1 0.1 0 0.1 1 -0.1 1 -0.1 0"/>
+								<g transform="translate(-1.5, 0)">	
+									<rect data-id="mixer" class="node"
+										transform="scale(1) translate(0,0)" 
+										x="-1" y="-1" width="2" height="2" rx="0.2" ry="0.2"/>
+
+									<line x1="0" y1="-0.7" x2="0" y2="0.7" transform="translate(0, 0)"/>
+									<line x1="0" y1="-0.7" x2="0" y2="0.7" transform="scale(1) translate(-0.5, 0)"/>
+									<line x1="0" y1="-0.7" x2="0" y2="0.7" transform="scale(1) translate(0.5, 0)"/>
+									
+									<line x1="-0.2" y1="0" x2="0.2" y2="0" transform="scale(1) translate(0, -0.2)"/>
+									<line x1="-0.2" y1="0" x2="0.2" y2="0" transform="scale(1) translate(-0.5, 0.1)"/>
+									<line x1="-0.2" y1="0" x2="0.2" y2="0" transform="scale(1) translate(0.5, 0.4)"/>
+								</g>	
+
+								<polygon data-id="actuator" class="node"
+									transform="translate(1, 0)"
+									points="-0.75 -1 1 0 -0.75 1"/>
+								<rect data-id="processor" class="node"
+									transform="translate(3.5,0)" 
+									x="-1" y="-1" width="2" height="2"/>
+							</g>
+						</svg>
+						<h4>General Element</h4>
+						<p>* a signal handler *</p>
+					</section>
+<!--
+Filter
+-->
+
+					<section>
+						<svg width="800" height="300" viewBox="-12 -4.5 24 9" style="margin: auto; border: solid 0px #f00;">
+							<defs>
+								<marker id="arrow-start" markerWidth="10" markerHeight="10" refx="-10" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+								<marker id="arrow-end" markerWidth="10" markerHeight="10" refx="12" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+							</defs>
+							<g cmt="multiple input" class="fragment">
+								<path class="node" d="M-9, -2
+																			L-5, -2	
+																			L-3, 0" 
+									stroke-dasharray="0.1,0.2" marker-start="url(#arrow-start)"/>
+								<path class="node" d="M-9, 2
+																			L-5, 2	
+																			L-3, 0" 
+									stroke-dasharray="0.5,0.2" marker-start="url(#arrow-start)"/>
+
+								<g cmt="output">
+									<line class="node fragment" x1="3" y1="0" x2="9" y2="0" stroke-dasharray="0.1,0.2" marker-end="url(#arrow-end)"/>
+								</g>
+
+								<g cmt="input">
+									<line class="node" x1="-3" y1="0" x2="3" y2="0"/>
+									<circle class="node" cx="-3" cy="0" r="0.2"/>
+									<circle class="node" cx="3" cy="0" r="0.2"/>
+								</g>
+								
+							</g>
+								
+							<g>	
+								<polygon data-id="filter" class="node" 
+									transform="translate(0,0) scale(2)" 
+									points="-0.7 -1 0.7 -1 0.1 0 0.1 1 -0.1 1 -0.1 0"/>
+							</g>	
+						</svg>
+						<h4>Filter</h4>
+						<p class="fragment">conditionally allow signal pass through</p>
+					</section>
+<!--
+Actuator
+-->
+
+					<section>
+						<svg width="800" height="300" viewBox="-12 -4.5 24 9" style="margin: auto; border: solid 0px #f00;">
+							<defs>
+								<marker id="arrow-start" markerWidth="10" markerHeight="10" refx="-10" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+								<marker id="arrow-end" markerWidth="10" markerHeight="10" refx="12" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+							</defs>
+							<g cmt="multiple input" class="fragment">
+								<line class="node fragment" x1="-9" y1="0" x2="3" y2="0" stroke-dasharray="0.1,0.2" marker-start="url(#arrow-start)"/>
+
+								<g cmt="output" class="fragment">
+									<line class="node" x1="3" y1="0" x2="9" y2="0" stroke-dasharray="0.1,0.2" marker-end="url(#arrow-end)"/>
+									<line class="node" x1="0" y1="-2" x2="2", y2="-4" marker-end="url(#arrow-end)"/>
+									<line class="node" x1="1" y1="-2" x2="3", y2="-4" marker-end="url(#arrow-end)"/>
+								</g>
+
+								<g cmt="input">
+									<line class="node" x1="-3" y1="0" x2="3" y2="0"/>
+									<circle class="node" cx="-3" cy="0" r="0.2"/>
+									<circle class="node" cx="3" cy="0" r="0.2"/>
+								</g>
+								
+							</g>
+								
+							<g>	
+								<polygon data-id="actuator" class="node"
+									transform="translate(0, 0) scale(2)"
+									points="-0.75 -1 1 0 -0.75 1"/>
+							</g>	
+						</svg>
+						<h4>Actuator</h4>
+						<p class="fragment">makes side effects, does not change signal</p>
+					</section>
+<!--
+Processor
+-->
+
+					<section>
+						<svg width="800" height="300" viewBox="-12 -4.5 24 9" style="margin: auto; border: solid 0px #f00;">
+							<defs>
+								<marker id="arrow-start-p" markerWidth="10" markerHeight="10" refx="-10" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+								<marker id="arrow-end-p" markerWidth="10" markerHeight="10" refx="12" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+							</defs>
+							<g cmt="multiple input" class="fragment">
+								<line class="node fragment" x1="-9" y1="0" x2="3" y2="0" stroke-dasharray="0.1,0.2" marker-start="url(#arrow-start-p)"/>
+
+								<g cmt="output">
+									<line class="node fragment" x1="3" y1="0" x2="9" y2="0" stroke-dasharray="0.5,0.2" marker-end="url(#arrow-end-p)"/>
+								</g>
+
+								<g cmt="input">
+									<line class="node" x1="-3" y1="0" x2="3" y2="0"/>
+									<circle class="node" cx="-3" cy="0" r="0.2"/>
+									<circle class="node" cx="3" cy="0" r="0.2"/>
+								</g>
+								
+							</g>
+								
+							<g>	
+								<rect data-id="processor" class="node"
+									transform="translate(0,0) scale(2)" 
+									x="-1" y="-1" width="2" height="2"/>
+							</g>	
+						</svg>
+						<h4>Processor</h4>
+						<p class="fragment">changes the signal, does not make side effects</p>
+					</section>
+
+<!--
+Mixer
+-->
+
+					<section>
+						<svg width="800" height="300" viewBox="-12 -4.5 24 9" style="margin: auto; border: solid 0px #f00;">
+							<defs>
+								<marker id="arrow-start-m" markerWidth="10" markerHeight="10" refx="-10" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+								<marker id="arrow-end-m" markerWidth="10" markerHeight="10" refx="12" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+							</defs>
+							<g cmt="multiple input" class="fragment">
+								<path class="node" d="M-9, -2
+																			L-5, -2	
+																			L-3, 0" 
+									stroke-dasharray="0.1,0.2" marker-start="url(#arrow-start-m)"/>
+								<path class="node" d="M-9, 2
+																			L-5, 2	
+																			L-3, 0" 
+									stroke-dasharray="0.4,0.4" marker-start="url(#arrow-start-m)"/>
+
+								<g cmt="output">
+									<line class="node fragment" x1="3" y1="0" x2="9" y2="0" stroke-dasharray="0.4,0.1,0.1,0.1" marker-end="url(#arrow-end-m)"/>
+								</g>
+
+								<g cmt="input">
+									<line class="node" x1="-3" y1="0" x2="3" y2="0"/>
+									<circle class="node" cx="-3" cy="0" r="0.2"/>
+									<circle class="node" cx="3" cy="0" r="0.2"/>
+								</g>
+								
+							</g>
+								
+							<g transform="scale(2)">	
+								<rect data-id="mixer" class="node"
+									transform="scale(1) translate(0,0)" 
+									x="-1" y="-1" width="2" height="2" rx="0.2" ry="0.2"/>
+
+								<line x1="0" y1="-0.7" x2="0" y2="0.7" transform="translate(0, 0)"/>
+								<line x1="0" y1="-0.7" x2="0" y2="0.7" transform="scale(1) translate(-0.5, 0)"/>
+								<line x1="0" y1="-0.7" x2="0" y2="0.7" transform="scale(1) translate(0.5, 0)"/>
+								
+								<line x1="-0.2" y1="0" x2="0.2" y2="0" transform="scale(1) translate(0, -0.2)"/>
+								<line x1="-0.2" y1="0" x2="0.2" y2="0" transform="scale(1) translate(-0.5, 0.1)"/>
+								<line x1="-0.2" y1="0" x2="0.2" y2="0" transform="scale(1) translate(0.5, 0.4)"/>
+
+							</g>	
+						</svg>
+						<h4>Mixer</h4>
+						<p>merges multiple signals into one</p>
+					</section>
+
+<!--
+All in one: Node element!
+-->
+
+					<section>
+						<svg width="800" height="300" viewBox="-12 -4.5 24 9" style="margin: auto; border: solid 0px #f00;">
+							<defs>
+								<marker id="arrow-start" markerWidth="10" markerHeight="10" refx="-3" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+								<marker id="arrow-end" markerWidth="10" markerHeight="10" refx="8" refy="2" orient="auto" markerUnits="strokeWidth">
+									<path d="M0,0 L0,4 L5,2 z" fill="#83a598" stroke-width="0"/>
+								</marker>
+							</defs>
+
+							<g cmt="basic element outline">
+								<line class="node" x1="-6" y1="0" x2="6" y2="0"/>
+								<rect data-id="generalEle" class="node" x="-5" y="-2" width="10" height="4"/>
+								<circle class="node" cx="-6" cy="0" r="0.2"/>
+								<circle class="node" cx="6" cy="0" r="0.2"/>
+							</g>
+
+							
+							<g>	
+								<line class="node" x1="-6" y1="0" x2="6" y2="0"/>
+								<circle class="node" cx="-6" cy="0" r="0.2"/>
+								<circle class="node" cx="6" cy="0" r="0.2"/>
+															
+								<polygon data-id="filter" class="node" 
+									transform="translate(-3.75,0)" 
+									points="-0.7 -1 0.7 -1 0.1 0 0.1 1 -0.1 1 -0.1 0"/>
+								<g transform="translate(-1.5, 0)">	
+									<rect data-id="mixer" class="node"
+										transform="scale(1) translate(0,0)" 
+										x="-1" y="-1" width="2" height="2" rx="0.2" ry="0.2"/>
+
+									<line x1="0" y1="-0.7" x2="0" y2="0.7" transform="translate(0, 0)"/>
+									<line x1="0" y1="-0.7" x2="0" y2="0.7" transform="scale(1) translate(-0.5, 0)"/>
+									<line x1="0" y1="-0.7" x2="0" y2="0.7" transform="scale(1) translate(0.5, 0)"/>
+									
+									<line x1="-0.2" y1="0" x2="0.2" y2="0" transform="scale(1) translate(0, -0.2)"/>
+									<line x1="-0.2" y1="0" x2="0.2" y2="0" transform="scale(1) translate(-0.5, 0.1)"/>
+									<line x1="-0.2" y1="0" x2="0.2" y2="0" transform="scale(1) translate(0.5, 0.4)"/>
+								</g>	
+
+								<polygon data-id="actuator" class="node"
+									transform="translate(1, 0)"
+									points="-0.75 -1 1 0 -0.75 1"/>
+								<rect data-id="processor" class="node"
+									transform="translate(3.5,0)" 
+									x="-1" y="-1" width="2" height="2"/>
+								</g>
+						</svg>
+						<h4><span class="text-highlight">F</span>ilter - (<span class="text-highlight">M</span>ixer) - <span class="text-highlight">A</span>ctuator - <span class="text-highlight">P</span>rocessor</h4>
+						<h2 class="fragment">Node</h2>
+					</section>
+
+<!--
+Predefined Node: filter
+-->
+					<section>
+						<pre><code>
+function acceptGreetingMsg (signal) {
+  return signal.get('type') === 'greeting';
+};
+
+const greetingFilter = collar.when(acceptGreetingMsg);
+						</code></pre>
+					<h4>Create a filter with <span class="text-highlight">when</span> operator</h4>
+				</section>
+
+
+<!--
+Predefined Node: processor
+-->
+					<section>
+						<pre class=""><code>
+function generateGreeting (signal) {
+  return signal.set('greeting', 'Hello!' + signal.get('name'));
+}
+
+const generateGreetingProcessor = collar.map(generateGreeting);
+						</code></pre>
+					<h4>Create a processor with <span class="text-highlight">map</span> operator</h4>
+					</section>
+
+<!--
+Predefined Node: actuator
+-->
+					<section>
+						<pre><code>
+function updateUI (signal) {
+  alert( signal.get('greeting') );
+}
+
+const updateUiActuator = collar.do(updateUI);
+						</code></pre>
+						<h4>Create an actuator with <span class="text-highlight">do</span> operator</h4>
+					</section>
+
+<!--
+Connect all together
+-->
+					<section>
+						<pre><code>
+greetingFilter
+  .to(generateGreetingProcessor)
+  .to(updateUiActuator);
+
+document.querySelector('#greeting-btn')
+  .addEventListener('click', function () {
+	
+  greetingFilter.push({
+    type: 'greeting',
+    name: 'Jack'
+  });
+});
+						</code></pre>
+						<p id="greeting-example-btn" style="cursor: pointer;">TRY IT NOW</p>
+						<h4>Connect them all together</h4>
+						<script>
+							//collar.enableDevtool();
+							const ns = collar.ns('com.collarjs.example.greeting');
+							const greetingFilter = ns.when(function (signal) {
+								return signal.get('type') === 'greeting';
+							})
+
+							const greetingGenerator = ns.map(function (signal) {
+								var newsignal = signal.set('greeting', 'Hello, ' + signal.get('name'));
+								return newsignal;
+							})
+							
+							const greetingActuator = ns.do(function (signal) {
+								alert(signal.get('greeting'));
+							});
+
+							greetingFilter.to(greetingGenerator).to(greetingActuator);
+							
+							document.querySelector('#greeting-example-btn').addEventListener('click', function () {
+								greetingFilter.push({
+									type: 'greeting',
+									name: 'Jack'
+								});
+							});
+						</script>
+					</section>
+
+<!--
+Create your own Node
+-->
+					<section>
+						<pre><code data-trim>
+class MyNode extends Node {
+  accept(signal) { // filter
+    return true;  
+  }
+  merge(signals, done) { // mixer
+    done(error, newSignal);
+  }
+  act(signal, done) { // actuator
+    done(error, result);
+  }
+  process(signal, done) { // processor
+    done(error, newSignal);
+  }
+}
+						</code></pre>
+						<h4>Create your own Node</h4>
+					</section>
+
+<!--
+Chapter 3
+-->
+
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
